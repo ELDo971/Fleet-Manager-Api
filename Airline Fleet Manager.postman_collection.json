@@ -1,0 +1,1562 @@
+{
+	"info": {
+		"_postman_id": "d3bd9def-1a0e-4a76-b62d-028199f9fd16",
+		"name": "Airline Fleet Manager",
+		"description": "StartFragment\n\nThe **Airline Fleet Manager API** is a RESTful API built with Node.js that provides a centralized system for managing key components of an airline's operations. It allows admins, managers, and users to interact with data related to aircraft models, crew assignments, flight schedules, maintenance reports, and user management. The API implements role-based access control (RBAC) to ensure secure access, granting different levels of permissions based on user roles (Admin, Manager, User). With this API, airlines can efficiently manage fleet operations, coordinate crew and maintenance tasks, and streamline flight scheduling.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39196953"
+	},
+	"item": [
+		{
+			"name": "Aircraft",
+			"item": [
+				{
+					"name": "Get all aircraft",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/aircrafts",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"aircrafts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aircraft by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/aircrafts/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"aircrafts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Aircraft",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/api/aircraft/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"api",
+								"aircraft",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Aircraft",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tailNumber\": \"string (e.g., 'N12345')\",\r\n  \"baseAirportId\": \"integer (e.g., 1)\",\r\n  \"modelId\": \"integer (e.g., 1)\",\r\n  \"productionDate\": \"ISO 8601 date string (e.g., '2020-01-01T00:00:00.000Z')\",\r\n  \"acquisitionDate\": \"ISO 8601 date string (e.g., '2020-12-01T00:00:00.000Z')\",\r\n  \"status\": \"string (e.g., 'ACTIVE', 'RETIRED', 'MAINTENANCE')\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/aircrafts/add",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"aircrafts",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Aircraft data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/aircrafts/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"aircrafts",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "All aircraft related endpoint"
+		},
+		{
+			"name": "Crew",
+			"item": [
+				{
+					"name": "Get all crew members",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/crews",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get a crew member by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/crews/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crews",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get stats for crew member by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/crews/stats/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crews",
+								"stats",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete a crew member by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/crews/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crews",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add a new crew member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fullName\": \"string (e.g., 'John Doe')\",\r\n  \"dateOfBirth\": \"ISO 8601 date string (e.g., '1985-06-15T00:00:00.000Z')\",\r\n  \"hireDate\": \"ISO 8601 date string (e.g., '2010-02-01T00:00:00.000Z')\",\r\n  \"email\": \"string (e.g., 'john.doe@example.com')\",\r\n  \"phone\": \"string (e.g., '+1234567890')\",\r\n  \"address\": \"string (e.g., '123 Main St, City, Country')\",\r\n  \"licenseNumber\": \"string (e.g., 'ABC1234567')\",\r\n  \"role\": \"string (e.g., 'Pilot', 'Flight Attendant')\",\r\n  \"status\": \"string (e.g., 'ON_DUTY', 'OFF_DUTY', 'ON_LEAVE', 'SUSPENDED')\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/crews/add",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crews",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a crew member data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/crews/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crews",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "All crew member related endpoint"
+		},
+		{
+			"name": "Airport",
+			"item": [
+				{
+					"name": "Get all airport",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/airports",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get airport by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/airports/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"airports",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Airport weather by iata",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/airports/weather/:iata",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"airports",
+								"weather",
+								":iata"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "iata",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete airport by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/airports/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"airports",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new airport",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"string (e.g., 'Los Angeles International Airport')\",\r\n  \"iata\": \"string (e.g., 'LAX')\",\r\n  \"icao\": \"string (e.g., 'KLAX')\",\r\n  \"city\": \"string (e.g., 'Los Angeles')\",\r\n  \"country\": \"string (e.g., 'USA')\",\r\n  \"latitude\": \"float (e.g., 33.9416)\",\r\n  \"longitude\": \"float (e.g., -118.4085)\",\r\n  \"timeZone\": \"string (e.g., 'America/Los_Angeles')\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/airports/add",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"airports",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update airport by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/airports/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"airports",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flight",
+			"item": [
+				{
+					"name": "Get all flight",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/flights",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"flights"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Flight by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/flights/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"flights",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get flight position estimation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/flights/location/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"flights",
+								"location",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete flight by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/flights/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"flights",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add a flight",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"flightNumber\": \"string (e.g., 'AF123')\",\r\n  \"aircraftId\": \"integer (e.g., 1)\",\r\n  \"departureAirportId\": \"integer (e.g., 1)\",\r\n  \"arrivalAirportId\": \"integer (e.g., 2)\",\r\n  \"date\": \"ISO 8601 date string (e.g., '2025-01-01T08:00:00.000Z')\",\r\n  \"expectedDepartureTime\": \"ISO 8601 date string (e.g., '2025-01-01T08:00:00.000Z')\",\r\n  \"expectedArrivalTime\": \"ISO 8601 date string (e.g., '2025-01-01T12:00:00.000Z')\",\r\n  \"departureTime\": \"ISO 8601 date string (optional, e.g., '2025-01-01T08:15:00.000Z')\",\r\n  \"arrivalTime\": \"ISO 8601 date string (optional, e.g., '2025-01-01T12:10:00.000Z')\",\r\n  \"flightDuration\": \"float (optional, e.g., 4.5)\",\r\n  \"departureGate\": \"string (optional, e.g., 'A12')\",\r\n  \"arrivalGate\": \"string (optional, e.g., 'B5')\",\r\n  \"status\": \"string (e.g., 'PENDING', 'IN_PROGRESS', 'COMPLETE')\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/flights/add",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"flights",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a flight data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/flights/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"flights",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aircraft Model",
+			"item": [
+				{
+					"name": "Get all aircraft model",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/aircraft_models",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"aircraft_models"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get aircraft model by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/aircraft_models/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"aircraft_models",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete aircraft model by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/aircraft_models/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"aircraft_models",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new aircraft model",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"manufacturer\": \"string (e.g., 'Boeing')\",\r\n  \"name\": \"string (e.g., '737 Max')\",\r\n  \"crewCapacity\": \"integer (e.g., 2)\",\r\n  \"passengerCapacity\": \"integer (e.g., 180)\",\r\n  \"cargoCapacity\": \"integer (e.g., 5000)\",\r\n  \"height\": \"float (e.g., 12.5)\",\r\n  \"length\": \"float (e.g., 39.5)\",\r\n  \"maxRange\": \"integer (e.g., 6000)\",\r\n  \"speed\": \"integer (e.g., 850)\",\r\n  \"fuelCapacity\": \"integer (e.g., 26000)\",\r\n  \"fuelBurn\": \"float (e.g., 5.5)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/aircraft_models/add",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"aircraft_models",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update aircraft model data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/aircraft_models/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"aircraft_models",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get all user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJkYXZpZC5icm93bkBleGFtcGxlLmNvbSIsImlhdCI6MTczNjU3NzQ1OCwiZXhwIjoxNzM2NTgxMDU4fQ.PGL0QaJznZo5RRNT5_qsrk_Zv9e5Ag4lhoC1mSQOt5M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/users",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/users/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/users/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fullName\": \"string (e.g., 'John Doe')\",\r\n  \"email\": \"string (e.g., 'john.doe@example.com')\",\r\n  \"password\": \"string (hashed password)\",\r\n  \"role\": \"string (e.g., 'USER', 'ADMIN', 'MANAGER')\",\r\n  \"createdAt\": \"ISO 8601 date string (e.g., '2025-01-01T00:00:00.000Z')\",\r\n  \"updatedAt\": \"ISO 8601 date string (e.g., '2025-01-01T00:00:00.000Z')\",\r\n  \"status\": \"string (e.g., 'ACTIVE', 'INACTIVE')\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"david.brown@example.com\",\r\n  \"password\": \"password101\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"users",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "alice.johnson@example.com",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "hashed_password_123",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/users/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Maintenance Report",
+			"item": [
+				{
+					"name": "Get all Report",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/maintenance_reports",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"maintenance_reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a report by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/maintenance_reports/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"maintenance_reports",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a report by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/maintenance_reports/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"maintenance_reports",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a new report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"flightId\": \"integer (e.g., 1)\",\r\n  \"crewId\": \"integer (e.g., 2)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/maintenance_reports/create",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"maintenance_reports",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a report",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/maintenance_reports/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"maintenance_reports",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reccuring issues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/maintenance_reports/recurring-issues",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"maintenance_reports",
+								"recurring-issues"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Crew assignement",
+			"item": [
+				{
+					"name": "Get all assignement",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/crew_assignements",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crew_assignements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an assignement by is id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/crew_assignements/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crew_assignements",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an assignement by is id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/crew_assignements/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crew_assignements",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a new assignement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"aircraftId\": \"integer (e.g., 1)\",\r\n  \"maintenanceType\": \"string (e.g., 'INSPECTION', 'REPAIR', 'OVERHAUL')\",\r\n  \"status\": \"string (e.g., 'COMPLETED', 'IN_PROGRESS', 'PENDING')\",\r\n  \"description\": \"string (e.g., 'Detailed description of the maintenance task')\",\r\n  \"resolvedAt\": \"ISO 8601 date string (optional, e.g., '2025-01-02T00:00:00.000Z')\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:11021/crew_assignements/create",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crew_assignements",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an assignement",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:11021/crew_assignements/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "11021",
+							"path": [
+								"crew_assignements",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:11021/status",
+					"host": [
+						"localhost"
+					],
+					"port": "11021",
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

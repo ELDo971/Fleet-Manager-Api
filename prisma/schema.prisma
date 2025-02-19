@@ -1,0 +1,178 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  fullName  String
+  email     String     @unique
+  password  String
+  role      UserRole   @default(USER)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  status    UserStatus @default(ACTIVE)
+}
+
+enum UserRole {
+  ADMIN
+  USER
+  MANAGER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model Airport {
+  id               Int        @id @default(autoincrement())
+  name             String
+  iata             String     @unique
+  icao             String     @unique
+  city             String
+  country          String
+  latitude         Float
+  longitude        Float
+  timeZone         String
+  Aircraft         Aircraft[]
+  departingFlights Flight[]   @relation("DepartureAirport")
+  arrivingFlights  Flight[]   @relation("ArrivalAirport")
+  Flight           Flight[]
+}
+
+model AircraftModel {
+  id                Int        @id @default(autoincrement())
+  manufacturer      String // Manufacturer of the aircraft
+  name              String     @unique // Name of the aircraft model
+  crewCapacity      Int // Number of crew members
+  passengerCapacity Int // Number of passenger seats
+  cargoCapacity     Int // Cargo capacity (in kilograms)
+  height            Float // Height of the aircraft in meters
+  length            Float // Length of the aircraft in meters
+  maxRange          Int // Maximum range in kilometers
+  speed             Int // Speed in kilometers per hour (km/h)
+  fuelCapacity      Int // Fuel capacity in liters
+  fuelBurn          Float // Fuel burn rate (liters per hour or per distance, e.g., liters per km)
+  Aircraft          Aircraft[]
+}
+
+model Aircraft {
+  id              Int            @id @default(autoincrement())
+  tailNumber      String         @unique
+  baseAirportId   Int
+  modelId         Int
+  productionDate  DateTime
+  acquisitionDate DateTime
+  status          AircraftStatus @default(ACTIVE)
+
+  // Relations
+  baseAirport       Airport             @relation(fields: [baseAirportId], references: [id])
+  model             AircraftModel       @relation(fields: [modelId], references: [id])
+  Flight            Flight[]
+  MaintenanceReport MaintenanceReport[]
+}
+
+enum AircraftStatus {
+  ACTIVE
+  RETIRED
+  MAINTENANCE
+}
+
+model Flight {
+  id                    Int          @id @default(autoincrement())
+  flightNumber          String       @unique
+  aircraftId            Int
+  departureAirportId    Int
+  arrivalAirportId      Int
+  date                  DateTime
+  expectedDepartureTime DateTime
+  expectedArrivalTime   DateTime
+  departureTime         DateTime?
+  arrivalTime           DateTime?
+  flightDuration        Float? // Flight duration in hours
+  departureGate         String? // Departure gate
+  arrivalGate           String?
+  status                FlightStatus @default(PENDING)
+  createdAt             DateTime     @default(now())
+  updatedAt             DateTime     @updatedAt
+
+  // Relations
+  plane            Aircraft          @relation(fields: [aircraftId], references: [id])
+  departureAirport Airport           @relation("DepartureAirport", fields: [departureAirportId], references: [id])
+  arrivalAirport   Airport           @relation("ArrivalAirport", fields: [arrivalAirportId], references: [id])
+  CrewAssignment   CrewAssignement[]
+  Airport          Airport?          @relation(fields: [airportId], references: [id])
+  airportId        Int?
+}
+
+enum FlightStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETE
+}
+
+model Crew {
+  id             Int               @id @default(autoincrement())
+  fullName       String
+  dateOfBirth    DateTime
+  hireDate       DateTime
+  email          String            @unique
+  phone          String
+  address        String
+  licenseNumber  String            @unique
+  role           String
+  status         CrewStatus        @default(OFF_DUTY)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  CrewAssignment CrewAssignement[]
+}
+
+enum CrewStatus {
+  ON_DUTY // The crew member is currently on duty (assigned to a flight or task).
+  OFF_DUTY // The crew member is not on duty.
+  ON_LEAVE // The crew member is on vacation or sick leave.
+  SUSPENDED // The crew member is temporarily suspended.
+}
+
+model CrewAssignement {
+  id        Int      @id @default(autoincrement())
+  flightId  Int
+  crewId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  flight Flight @relation(fields: [flightId], references: [id])
+  crew   Crew   @relation(fields: [crewId], references: [id])
+}
+
+model MaintenanceReport {
+  id              Int               @id @default(autoincrement())
+  aircraftId      Int
+  maintenanceType MaintenanceType
+  status          MaintenanceStatus @default(PENDING)
+  description     String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  resolvedAt      DateTime?
+
+  // Relations
+  plane Aircraft @relation(fields: [aircraftId], references: [id])
+}
+
+enum MaintenanceType {
+  INSPECTION
+  REPAIR
+  OVERHAUL
+}
+
+enum MaintenanceStatus {
+  COMPLETED
+  IN_PROGRESS
+  PENDING
+}
