@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:latest
+    container_name: my-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    networks:
+      - mynetwork
+    expose:
+      - "3306"
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h127.0.0.1', '-P3306']
+      interval: 5s
+      timeout: 2s
+      retries: 20
+      
+  api:
+    build: .
+    container_name: my-api
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "mysql://user:password@db:3306/mydb"
+    ports:
+      - "11021:11021"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
